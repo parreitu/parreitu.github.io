@@ -1,0 +1,136 @@
+---
+layout: single
+title: LibreOfficeOnline eta Nextcloud batera lanean
+tags: libreoffice libreofficeonline nextcloud
+---
+
+<p><em><strong>2020ko ekainak 5-ean Eguneratua. Post hau gaurko egunez dagoen LOOL-eko azken bertsioaren instalazioarako eguneratuta dago.<br /></strong></em></p>
+<p>Nextcloud zerbitzarian bulegotika/ofimatika dokumentuak online editatu ahal izateko lehen aukeretako bat CollaboraOnline erabiltzea da. Oso erreza da <a href="https://nextcloud.com/collaboraonline/" target="_blank">bera konfiguratzea</a>, docker bidez instalatzen da eta ondo integratuta dago.</p>
+<p>Arazoa da docker kontainerrak batera konektatua egon daitezkeen erabiltzaile kopurua mugatuta daukala: 10 erabiltzaileko/dokumentuko konkurrentzia onartzen du, hortik gora mezu bat azaltzen da muga gainditu dela esanez.</p>
+<p>CollaboraOnline docker irudia LibreOfficeOnline-ean oinarrituta dagonez, bigarren hau Nextcloud-ekin erabiltzeko nola instalatu eta konfiguratu dezakegun azaltzera goaz. Lan gehiago eskatuko digu, baina posible da.</p>
+<h1>Bi zerbitzari</h1>
+<p>Docker kontainerrarekin lan egin dugunean, dena zerbitzari berean izan dugu. Nextcloud zerbitzari batean instalatzen genuen, eta gero zerbitzarian bertan docker erabiliz CollaboraOnline zerbitzua abiatzen genuen.</p>
+<p>Hau egiteko, eta dokumentazio ofizialean dauden instrukzioak jarraituz, bi domeinu erabiltzen genituen</p>
+<p>&nbsp;&nbsp;&nbsp; &bull; <a href="https://hodeia.niredomeinua.eus">https://hodeia.niredomeinua.eus</a> : Nextcloud zerbitzurako</p>
+<p>&nbsp;&nbsp;&nbsp; &bull; <a href="https://office.niredomeinua.eus">https://office.niredomeinua.eus</a> : CollaboraOnline zerbitzurako</p>
+<p>Konturatzen bagara, <em><strong>https</strong></em> erabiltzeko konfiguratu dugu, eta horretarako Letsencrypt erabili dugu.</p>
+<p>Nextcloud zerbitzarian administratzaile moduan sartuta, CollaboraOnline plugina aktibatu ondoren, bere konfigurazioan zerbitzaria zein den esatea nahikoa izan da dena martxan jartzeko: <a href="https://office.niredomeinua.eus">https://office.niredomeinua.eus</a></p>
+<p>Orain CollaboraOnline ordeztu nahi dugu bere ordez LibreOfficeOnline erabiltzeko. Horretarako bigarren zerbitzari bat erabiliko dugu. Honek etorkizunari begira onura asko ekarriko dizkigu:</p>
+<ul>
+<li>LibreOfficeOnline bertsio berri bat instalatu nahi dugunean, produkzioan dagoena ezertarako ukitu gabe, zerbitzari berri bat instalatu dezakegu (office02.niredomeinua.eus). Dena ondo konfiguratuta dugunean, Nextcloud zerbitzarian CollaboraOnline pluginean zerbitzari berriaren izena idatzi eta ikusi nola dabilen. Arazoren bat ematen badu, lehen genuena jarri eta zerbitzua ez da geratzen.</li>
+<li>Lan karga banatzen dugu. Erabiltzaile askok batera ofimatika dokumentuak online editatzen daudenean, Nextcloud zerbitzariak ez du lan karga hori nabarituko.</li>
+</ul>
+<p>Bigarren zerbitzari honen instalazioa bukatzen denean, Nextcloud zerbitzuko CollaboraOnline pluginean bere helbidea jarriko dugu: <a href="https://office02.niredomeinua.eus">https://office02.niredomeinua.eus</a></p>
+<h1>LibreOfficeOnline zerbitzaria instalatu</h1>
+<p>Aurrerantzean LOOL deituko diogu.</p>
+<p>Instalazio hau egiteko Ubuntu 18.04 LTS instalatu berri eta eguneratu batean oinarritzen gara. LOOL deskargatu eta konpilatuko dugu. Honetarako, Github-en dagoen proiektu hau zip moduan deskargatuko dugu eta zerbitzariko karpeta batean deskonprimatuko dugu</p>
+<p><a href="https://github.com/husisusi/officeonlin-install.sh/">https://github.com/husisusi/officeonlin-install.sh/</a></p>
+<p>Unzip instalatu</p>
+<pre># apt-get install unzip <code></code></pre>
+<p>Hurrengo lerro hauek garrantzi berezia dute. Dokumentu bat editatzerakoan automatikoki hizkuntza zuzentzailea aplikatzen saiatzen da. Sisteman zuzentzailea instalatuta ez dagoenean, dokumentu batean zerbait idazten saiatzen zarenean, akats bat ematen du eta berriro dokumentua berriro kargatzen da [ <a href="https://github.com/husisusi/officeonlin-install.sh/issues/162" target="_blank">1</a> , <a href="https://github.com/husisusi/officeonlin-install.sh/issues/155" target="_blank">2</a>]</p>
+<p>Ondorioz, erabiliko dituzun hizkuntzetako zuzentzaileak instalatu beharko ditugu<br /><code></code></p>
+<pre><code># apt install hunspell locales-all hunspell-eu-es hunspell-es</code></pre>
+<p>Orain konpilazioa. Kontutan izan hau egin ahal izateko gutxienez 4GB RAM eta diskoan 13GB libre izan beharko dituela. <br />Lasai hartu, ordu batzuk beharko ditu. Agian hoberena gauez martxan uztea litzateke, eta hurrengo goizean dena prest izango genuke.</p>
+<pre># cd /root<br /><code># wget -c https://github.com/husisusi/officeonlin-install.sh/archive/master.zip</code><br /># unzip officeonlin-install.sh-master.zip <br /><code># cd officeonlin-install.sh-master/</code></pre>
+<p>Konpilazioa egin aurretik, gomendagarria da begiratzea zeintzuk diren une honetan konpilaziorako gomendatzen dituzten parametroak. Horretarako bi leku hauetan begiratzea gomendatzen dut:</p>
+<ul>
+<li>Issue honetako azken gomendioak: <a href="https://github.com/husisusi/officeonlin-install.sh/issues/188" target="_blank">https://github.com/husisusi/officeonlin-install.sh/issues/188</a></li>
+<li>Wikian jartzen duten azken konfigurazioa: <a href="https://github.com/husisusi/officeonlin-install.sh/wiki">https://github.com/husisusi/officeonlin-install.sh/wiki</a></li>
+</ul>
+<p>Parametro hauek officeonline-install.cfg fitxategian gehituko ditugu. Orain ((2020/06/08) egitera goazen kopilazioan hauek dira gehituko ditugun lerroak:</p>
+<pre>set_core_regex='cp-6.2'<br />set_online_regex='co-4.2.4'<br />lo_src_repo='https://github.com/LibreOffice/core.git'<br />lo_src_branch='master'<br />lo_src_commit=''<br />lo_src_tag=''<br />lo_dir="/opt/libreoffice"<br />lo_forcebuild=true<br />lo_non_free_ttf=true<br />poco_version=$poco_version_latest #latest releases available<br />poco_forcebuild=true<br />lool_src_repo="https://github.com/LibreOffice/online.git"<br />lool_src_branch='master'<br />lool_src_tag='cp-4.2.4-2'<br />lool_dir="/opt/lool"<br />lool_configure_opts="--disable-werror --with-lokit-path=${lo_dir}/include"<br />lool_logfile='/var/log/loolwsd.log'<br />lool_prefix='/usr'<br />lool_sysconfdir='/etc'<br />lool_localstatedir='/var'<br />lool_forcebuild=true<br />lool_maxcon=200<br />lool_maxdoc=100<br />loolwsd_service_name='loolwsd'</pre>
+<p>Ondoren, konpilazio akats bat ekiditeko lib/default.cfg fitxategia editatu eta bi erreferentzia hauek bilatu eta ezabatuko ditugu: <strong><em>disable-gstreamer-0-10</em></strong> eta <strong><em>disable-kde4</em></strong><br /><code></code></p>
+<p>Orain, konpilazioan behar diren bi pakete hauek instalatuko ditugu</p>
+<pre>apt-get install python3-lxml<br />apt-get install python3-polib</pre>
+<p>eta azkenik konpilazioa eta instalazioa abiatuko ditugu</p>
+<pre># ./officeonline-install.sh</pre>
+<p>Pazientzia izan, ordu batzuk beharko ditu. Instalazioa bukatu ondoren zerbitzaria berrabiaraziko dugu. Instalazio honek LOOL zerbitzu moduan jarri du</p>
+<pre># systemctl status loolwsd.service</pre>
+<p>Beraz aurrerantzean sistema berrabiarazi nahiko bagenuke (adibidez konfigurazioa aldatu dugulako), honela egitea gomendatzen dute</p>
+<pre><code># systemctl daemon-reload &amp;&amp; systemctl restart loolwsd.service</code></pre>
+<p>Zerbitzua ondo arrankatu den ikusteko</p>
+<pre><code># systemctl status loolwsd.service</code></pre>
+<p>Hau egin ondoren <em><strong>9980</strong></em> portuan erantzungo du</p>
+<h1>Apache</h1>
+<p>Front-End moduan Apache jarriko dugu, horretarako behar diren moduluak aktibatu eta letsencrypt konfiguratu ondoren, eskaerak LOOL zerbitzuari 9980 portua erabiliz bideratzeko konfiguratuko dugu.</p>
+<pre><code># apt-get install apache2</code></pre>
+<h2>Apache moduloak</h2>
+<p>Beharko ditugun moduluak aktibatu</p>
+<pre><code># a2enmod ssl proxy proxy_http proxy_balancer proxy_wstunnel</code></pre>
+<h2>LetsEncrypt</h2>
+<p>Apache konfigurazio fitxategia (/etc/apache2/sites-enabled/000-default.conf) editatuko dugu eta <strong><em>Servername</em></strong> atalean gure zerbitzariaren DNS izena jarriko dugu</p>
+<pre>ServerName office02.niredomeinua.eus</pre>
+<p>Gure kasuan Ubuntu 18.04 LTS erabiltzen ari gara. Honela instalatu dugu</p>
+<pre><code># apt-get insta<code>ll software-properties-common</code></code></pre>
+<pre><code># add-apt-repository universe</code><br /><code># add-apt-repository ppa:certbot/certbot</code><br /><code># apt-get update</code><br /><code># apt-get install certbot python-certbot-apache </code><br /><code># certbot --apache</code></pre>
+<p>&nbsp;Ondoren, konfigurazio fitxategia ( <em>/etc/apache2/sites-enabled/000-default-le-ssl.conf</em>) editatu&nbsp; eta beltzez jarri ditugun lerro hauek gehitu beharko dituzu:</p>
+<pre><br />&lt;IfMod<code>ule mod_ssl.c&gt;</code><br /><code>&lt;VirtualHost *:443&gt;</code><br /><code>&nbsp;&nbsp; &nbsp;ServerAdmin webmaster@localhost</code><br /><code>&nbsp;&nbsp; &nbsp;DocumentRoot /var/www/html</code><br /><code>&nbsp;&nbsp; &nbsp;# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,</code><br /><code>&nbsp;&nbsp; &nbsp;# error, crit, alert, emerg.</code><br /><code>&nbsp;&nbsp; &nbsp;# It is also possible to configure the loglevel for particular</code><br /><code>&nbsp;&nbsp; &nbsp;# modules, e.g.</code><br /><code>&nbsp;&nbsp; &nbsp;#LogLevel info ssl:warn</code><br /><br /><code>&nbsp;&nbsp; &nbsp;ErrorLog ${APACHE_LOG_DIR}/error.log</code><br /><code>&nbsp;&nbsp; &nbsp;CustomLog ${APACHE_LOG_DIR}/access.log combined</code><br /><br /><code>&nbsp;&nbsp; &nbsp;# For most configuration files from conf-available/, which are</code><br /><code>&nbsp;&nbsp; &nbsp;# enabled or disabled at a global level, it is possible to</code><br /><code>&nbsp;&nbsp; &nbsp;# include a line for only one particular virtual host. For example the</code><br /><code>&nbsp;&nbsp; &nbsp;# following line enables the CGI configuration for this host only</code><br /><code>&nbsp;&nbsp; &nbsp;# after it has been globally disabled with "a2disconf".</code><br /><code>&nbsp;&nbsp; &nbsp;#Include conf-available/serve-cgi-bin.conf</code><br /><br /><code>ServerName office02.niredomeinua.eus</code><br /><code>SSLCertificateFile /etc/letsencrypt/live/office02.niredomeinua.eus/fullchain.pem</code><br /><code>SSLCertificateKeyFile /etc/letsencrypt/live/office02.niredomeinua.eus/privkey.pem</code><br /><code>Include /etc/letsencrypt/options-ssl-apache.conf</code><br /><strong><code># HASIERA LIBREOFFICEONLINE CONF</code></strong><br /><br /><strong><code># Container uses a unique non-signed certificate</code></strong><br /><strong><code>SSLProxyEngine On</code></strong><br /><strong><code>SSLProxyVerify None</code></strong><br /><strong><code>SSLProxyCheckPeerCN Off</code></strong><br /><strong><code>SSLProxyCheckPeerName Off</code></strong><br /><br /><strong><code>Options -Indexes</code></strong><br /><br /><strong><code># Encoded slashes need to be allowed</code></strong><br /><strong><code>AllowEncodedSlashes NoDecode</code></strong><br /><br /><strong><code># keep the host</code></strong><br /><strong><code>ProxyPreserveHost On</code></strong><br /><br /><strong><code># static html, js, images, etc. served from loolwsd</code></strong><br /><strong><code># loleaflet is the client part of LibreOffice Online</code></strong><br /><strong><code>ProxyPass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /loleaflet https://127.0.0.1:9980/loleaflet retry=0</code></strong><br /><strong><code>ProxyPassReverse&nbsp;&nbsp;&nbsp; /loleaflet https://127.0.0.1:9980/loleaflet</code></strong><br /><br /><strong><code># WOPI discovery URL</code></strong><br /><strong><code>ProxyPass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /hosting/discovery https://127.0.0.1:9980/hosting/discovery retry=0</code></strong><br /><strong><code>ProxyPassReverse&nbsp;&nbsp;&nbsp; /hosting/discovery https://127.0.0.1:9980/hosting/discovery</code></strong><br /><br /><strong><code># Capabilities</code></strong><br /><strong><code>ProxyPass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /hosting/capabilities https://127.0.0.1:9980/hosting/capabilities retry=0</code></strong><br /><strong><code>ProxyPassReverse&nbsp;&nbsp;&nbsp; /hosting/capabilities https://127.0.0.1:9980/hosting/capabilities</code></strong><br /><br /><strong><code># Main websocket</code></strong><br /><strong><code>ProxyPassMatch "/lool/(.*)/ws$" wss://127.0.0.1:9980/lool/$1/ws nocanon</code></strong><br /><br /><strong><code># Admin Console websocket</code></strong><br /><strong><code>ProxyPass&nbsp;&nbsp; /lool/adminws wss://127.0.0.1:9980/lool/adminws</code></strong><br /><br /><strong><code># Download as, Fullscreen presentation and Image upload operations</code></strong><br /><strong><code>ProxyPass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /lool https://127.0.0.1:9980/lool</code></strong><br /><strong><code>ProxyPassReverse&nbsp;&nbsp;&nbsp; /lool https://127.0.0.1:9980/lool</code></strong><br /><br /><strong><code># BUKAERA LIBREOFFICEONLINE CONF</code></strong><br /><code>&lt;/VirtualHost&gt;</code><br /><code>&lt;/IfModule&gt;</code></pre>
+<h3>Apache eta letsencrypt</h3>
+<p>Gure zerbitzari honek domeinu izen bat izan behar du, gure kasuan office02.niredomeinua.eus domeinuari erantzuteko prestatu dugu. Apache eta Letsencrypt konfiguratuta ditugu.</p>
+<p>Kontua da LOOL-ek ez dituela Apache-ko ziurtagiriak erabiltzen, berak bere ziurtagiri propioak erabiltzen ditu. Hemen proposatzen den soluzioak hau egingo luke:</p>
+<ul>
+<li>Letsencrypt eguneraketa normal bat egin, beraiek proposatzen duten moduan cron bidez ziurtagiriaren eguneraketak behar direnean automatikoki egiteko.</li>
+<li>Gauero LOOL zerbitzua geratu eta Letsencrypt bidez sortzen diren ziurtagiriak LOOL-ek begiratzen duen karpetan utzi eta baimen egokiak jarri</li>
+<li>Ziurtagiriak kopiatu ondoren, berriro ere LOOL zerbitzua abiatu.</li>
+</ul>
+<p>Gauero kopia egiteko scripta sortu</p>
+<pre><code># mkdir /root/scripts</code><br /><code># cd /root/scripts/</code><br /><code># nano lool-letsencrypt.sh</code><br /><code># chmod +x lool-letsencrypt.sh</code></pre>
+<p>Edukian begiratzen badugu, hau da egiten duena. Lehenik eta behin LOOL konfigurazio karpetan, karpeta berri bat sortuko dugu ziurtagiriak bertan kopiatzeko, eta gure LOOL domeinu izenarekin karpeta bat sortuko dugu (aurrez sortuta badaude aurrera jarraituko du).</p>
+<p>Ondoren azaltzen den edukiarekin script bat sortuko dugu, eta crontab bidez gauero exekutatuko dugu</p>
+<pre><code>#!/bin/sh</code><br /><code>mkdir -p /etc/loolwsd/certs/office02.niredomeinua.eus</code></pre>
+<pre># Letsencrypt ziurtagiriak kopiatu</pre>
+<pre><code>cp -f /etc/letsencrypt/live/office02.niredomeinua.eus/cert.pem /etc/loolwsd/certs/office02.niredomeinua.eus/</code><br /><code>cp -f /etc/letsencrypt/live/office02.niredomeinua.eus/privkey.pem /etc/loolwsd/certs/office02.niredomeinua.eus/</code></pre>
+<pre># Baimenak ondo jarri</pre>
+<pre><code>chown -Rf lool:lool /etc/loolwsd/certs</code><br /><code>chmod -Rf 755&nbsp; /etc/loolwsd/certs</code></pre>
+<pre># eta azkenik zerbitzua berrabiarazi</pre>
+<pre><code>systemctl daemon-reload &amp;&amp; systemctl restart loolwsd.service</code></pre>
+<p>"crontab -e" komandoa erabiliz, egunero apache-ko ziurtagiriak loolwsd karpetan kopiatzeko konfiguratuko dugu.</p>
+<pre>0 5 * * * /root/scripts/lool-letsencrypt.sh<br /><br /></pre>
+<h1>LOOL: Oinarrizko konfigurazioan aldaketak</h1>
+<h2>Zerbitzua</h2>
+<p>LOOL arrankatzekoan erabiliko dituen parametroak hemen konfiguratzen dira</p>
+<pre><code>/lib/systemd/system/loolwsd.service</code></pre>
+<p>Aurrerago ikusiko dugunez, web bidez admin interfaze bat izango dugu. Hor ikusi ahal izango dugu besteak beste</p>
+<ul>
+<li>Une bakoitzean zabalik dauden dokumentuak, eta baita ere zeintzuk diren LOOL erabiltzen ari diren erabiltzaileak.</li>
+<li>Memoria eta mikroak duten karga</li>
+</ul>
+<p>Admin erabiltzaile horren izena eta pasahitza lerro honetan konfiguratzen da</p>
+<pre><code>ExecStart=/opt/online/loolwsd --o:sys_template_path=/opt/online/systemplate --o:lo_template_path=/opt/libreoffice/instdir&nbsp; --o:child_root_path=/opt/online/jails --o:admin_console.username=<strong>nireadminerabiltzailea</strong> &ndash;o:admin_console.password="<strong>niresuperpasahitza</strong>"</code></pre>
+<h2>Beste parametroak</h2>
+<p>Ezer aldatzen hasi aurretik, gomendagarria da konfigurazio fitxategiaren kopia bat egitea.</p>
+<pre><code># cp /etc/loolwsd/loolwsd.xml /etc/loolwsd/loolwsd.xml.backup</code></pre>
+<p>Aldatu ditugun parametroak hauek dira:</p>
+<h3>Hizkuntzak</h3>
+<p>Online edizioan gure eskura izango ditugun hizkuntzak konfiguratuko ditugu. Kontutan izan lehenago azaldu dugun moduan, hizkuntza hauetako zuzentzaile ortografikoak instalatuta egon behar direla.</p>
+<pre><code>&lt;allowed_languages desc="List of supported languages on this instance." default="de_DE en_GB en_US es_ES fr_FR it nl pt_BR pt_PT ru"&gt;es_ES eu_ES&lt;/allowed_languages&gt;</code><br />&nbsp;</pre>
+<h3>Nextcloud zerbitzaria baimendu</h3>
+<p>Gure Nextcloud zerbitzaria baimendu &ldquo;Backend storage&rdquo; atalean. Domeinuaren izenean dauden puntuak &ldquo;eskapatu&rdquo; egin behar dira aurretik <strong>&ldquo;\&rdquo;</strong> jarrita. Adibidez: <strong>hodeia\.niredomeinua\.eus</strong></p>
+<pre>&nbsp;&nbsp;&nbsp; &lt;storage desc="Backend stor<code>age"&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;filesystem allow="false" /&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;wopi desc="Allow/deny wopi storage. Mutually exclusive with webdav." allow="true"&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="true"&gt;<strong>hodeia\.niredomeinua\.eus</strong>&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="true"&gt;localhost&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="true"&gt;10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="true"&gt;172\.1[6789]\.[0-9]{1,3}\.[0-9]{1,3}&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="true"&gt;172\.2[0-9]\.[0-9]{1,3}\.[0-9]{1,3}&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="true"&gt;172\.3[01]\.[0-9]{1,3}\.[0-9]{1,3}&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="true"&gt;192\.168\.[0-9]{1,3}\.[0-9]{1,3}&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Regex pattern of hostname to allow or deny." allow="false"&gt;192\.168\.1\.1&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;max_file_size desc="Maximum document size in bytes to load. 0 for unlimited." type="uint"&gt;0&lt;/max_file_size&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/wopi&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;webdav desc="Allow/deny webdav storage. Mutually exclusive with wopi." allow="false"&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;host desc="Hostname to allow" allow="false"&gt;<strong>hodeia\.niredomeinua\.eus</strong>&lt;/host&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/webdav&gt;</code><br /><code>&nbsp;&nbsp;&nbsp; &lt;/storage&gt;</code></pre>
+<h3>LOG aktibatu</h3>
+<p>Arazoren bat agertzen denean LOGean begiratu nahi izaten dugu, baina horretarako lehenik eta behin LOGa aktibatu egin behar da</p>
+<pre><code># touch /var/log/loolwsd.log</code><br /><code># chmod 777 /var/log/loolwsd.log</code></pre>
+<p>Berriro ere /etc/loolwsd/loolwsd.xml editatu, eta logging atala aktibatu</p>
+<pre>&nbsp;&nbsp;&nbsp; &lt;lo<code>gging&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;color type="bool"&gt;<strong>true</strong>&lt;/color&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;level type="string" desc="Can be 0-8, or none (turns off logging), fatal, critical, error, warning, notice, information, debug, trace" default="warning"&gt;<strong>warning</strong>&lt;/level&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;file enable="<strong>true</strong>"&gt;</code><br /><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;property name="path" desc="Log file path."&gt;<strong>/var/log/loolwsd.log</strong>&lt;/property&gt;</code><br /><code>&nbsp;</code><code></code><br /><code>&nbsp;</code><code></code></pre>
+<h3>Aldaketak aplikatu</h3>
+<p>Aldaketa hauek egin ondoren, LOOL zerbitzua berrabiarazi beharko genuke</p>
+<pre><code># systemctl daemon-reload &amp;&amp; systemctl restart loolwsd.service</code></pre>
+<h2>Administrazio kontsola</h2>
+<p>LOOL zerbitzuak administrazio kontsola eskaintzen digu. Web kontsola honetan hainbat datu ikusi ahal izango ditugu, besteak beste</p>
+<ul>
+<li>Une horretan irekitako dokumentuak eta konektatutako erabiltzaileak</li>
+<li>Sistemaren karga</li>
+<li>Memoria, CPU eta sarearen erabilera azaltzen dizkiguten grafiko batzuk</li>
+</ul>
+<p><img class="img-responsive" class="img-responsive" src="https://media.blogak.eus/media/photologue/photos/LibreOfficeOnline.png" alt="" width="1076" height="519" /></p>
+<p>Administrazio kontsola honetara konektatzeko erabiliko ditugun erabiltzaile eta pasahitza definitzeko&nbsp; <em>/lib/systemd/system/loolwsd.service</em> fitxategia editatuko dugu</p>
+<pre><code>[Unit]</code><br /><code>Description=LibreOffice OnLine WebSocket Daemon</code><br /><code>After=network.target</code><br /><br /><code>[Service]</code><br /><code>EnvironmentFile=-/etc/sysconfig/loolwsd</code><br /><code>ExecStartPre=/bin/mkdir -p /usr/local/var/cache/loolwsd</code><br /><code>ExecStartPre=/bin/chown lool: /usr/local/var/cache/loolwsd</code><br /><code>PermissionsStartOnly=true</code><br /><code>ExecStart=/opt/online/loolwsd --o:sys_template_path=/opt/online/systemplate --o:lo_template_path=/opt/libreoffice/instdir&nbsp; --o:child_root_path=/opt/online/jails --o:admin_console.username=<strong>NIRESUPERADMIN</strong> --o:admin_console.password="<strong>NIRESUPERPASAHITZA</strong>"</code><br /><code>User=lool</code><br /><code>KillMode=control-group</code><br /><code># Restart=always</code><br /><br /><code>[Install]</code><br /><code>WantedBy=multi-user.target</code><br /><br />Kontsolara konektatzeko helbide hau erabiliko dugu:</pre>
+<p><a href="https://office02.niredomeinua.eus/loleaflet/dist/admin/adminAnalytics.html">https://office02.niredomeinua.eus/loleaflet/dist/admin/adminAnalytics.html</a></p>
+<p>&nbsp;</p>
+<p>Eta honekin, prest izango genuke LibreOfficeOnline gure Nextcloud zerbitzariarekin lan egiteko konfiguratuta !! Ez zen hain zaila ezta ?&nbsp;&nbsp; ;-)</p>
+<h2><strong>Eguneraketak aplikatzerakoan<br /></strong></h2>
+<p>LibreOffice-online zerbitzurako makina birtual bat erabiltzen dugu. Noizbehinka eguneraketak publikatuko dira, eta berriagoak diren bertsioak instalatu nahi izango ditugu.</p>
+<p>Hau nola egiten da ? Ba LibreOffice-Online zerbitzarian berriro ere officeonline-install.sh exekutatuz, hasieran egin genuen moduan. Scritp honek software berria deskargatu eta berriro ere konpilatuko du.</p>
+<p>Lan hau ez da azkarra, hasieran gertatu zitzaigun moduan, eguneraketak konpilatzeko ordu dexente beharko ditu, beraz ez da ideia on bat produkzioan dugun LibreOffice-Online konpilatzea.</p>
+<p>Guk trikimailu hau erabiltzen dugu. Hasierako instalazioa bukatu dugunean eta badakigunean dena ondo dagoela, produkzioan dugun makina birtualaren backup bat egin, eta backup horretan oinarrituta beste zerbitzari bat sortzen dugu. Bigarren zerbitzari hau erabiliko dugu bertsio berriak konpilatzeko, eta honela produkzioan dagoenari ez diogu lanik ematen.</p>
+<p>Akatsen bat gertatzen bada, ez dugu lehendik genuen LibreOffice-Online izorratzen. Dena ondo badoa, produkzioan zegoen VM-aren IPa jarri berriari eta kitto, berria produkzioan dugu.</p>

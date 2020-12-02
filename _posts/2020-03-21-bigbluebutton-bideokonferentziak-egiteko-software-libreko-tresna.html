@@ -1,0 +1,117 @@
+---
+layout: single
+title: BigBlueButton, bideokonferentziak egiteko software libreko tresna
+tags: bigbluebutton bideokonferentziak
+---
+
+<h2>Sarrera</h2>
+<p>Gaur egun bizi dugun isolamendu egoeran, ezinbestekoa da bideokomunikazioarako tresnak eskuragarri izatea. <a href="https://librezale.eus/wiki/KomunikazioEtaElkarlanerakoTresnak" target="_blank">Librezalekoek publikatu duten zerrendan</a> begiratzen badugu, orain arte askok ezagutzen ez genituen, baina orain egunero erabiltzen ditugun Jitsi moduko tresnak ikusiko ditugu.<br /><br />Nik post honetan, <a href="https://librezale.eus/wiki/KomunikazioEtaElkarlanerakoTresnak#BigBlueButton" target="_blank">BigBlueButton</a> tresnaren instalazioa nola egin dezakegun azalduko dut, baina horrekin hasi aurretik, esan behar dut <em><strong>hezkuntzarako oso tresna baliagarria</strong></em> iruditzen zaidala. Irakaskuntza prozesuan erabiltzen diren rolak eta funtzioak oso ondo betetzen dituela esango nuke, adibidez:</p>
+<ul>
+<li>Ikasgela fisikoan bezala, irakasleak bere rol propioa izango du tresna honetan, eta rol horrek emango dion boterea erabiliz
+<ul>
+<li>Ikasle talde osoarekin txat publikoa izateaz gain, ikasle bakoitzarekin txat pribatua erabili ahal izango du.</li>
+<li>Ikasle bati hitza eman ahal izango dio, eta "arbelera atera", hau da, denek ikusten duten arbel digitalean gauzak egiteko aukera eman.</li>
+<li>Bideoa eta audioa erabiliz, ikasle bati bere mikroa eta kamera aktibatzeko esan, eta ikaskide guztien aurrean zerbait azaltzeko eskatu (arbelera atera)</li>
+<li>Moderatzailea izanik, ikasle zehatz baten edo partaide guztien mikroa isildu ahal izango du saguaren klik bakar batekin</li>
+<li>Ikasle baten jarrera egokia ez denean, klik bakar batekin gelatik atera ahal izango du</li>
+<li>Partaide guztien artean dokumentu bat osatu ahal izango da era kolaboratzailean</li>
+<li>Irakasleak/Moderatzaileak klik bakar batekin nahi duen beste inkesta abiatu ahal izango ditu une bakoitzean ikasleek/partaideek bete dezaten. Honekin klasea irauten duen bitartean, azaldutako gaiak ulertzen ari diren ala ez jakin ahal izango du</li>
+<li>Partaide bakoitzak emoticon bidez bere egoera azaldu ahal izango du : Hitza eskatu, pozik edo triste nago, ...</li>
+<li>Aurkezle/irakasleak arbelera aurkezpenak igo ahal izango ditu, eta partaide guztiek ikusi eta entzun ahal izango dute irakaslea aurkezpena azaltzen.</li>
+<li>Irakasleak edozein momentutan ikasle bati aurkezle rola esleitzen badio, ikasle honek aurkezpenaren kontrola har dezake. Hortaz gain, une horretan bera aurkezle denez, bere ordenagailuan dituen dokumentuak igo ahal izango ditu aurkezpenera, eta ikaskide guztiei bere lana azaldu.</li>
+<li>Aurkezleak Youtube, Vimeo eta beste plataforma batzuetako bideo esteka bat igo dezake, eta berak kudeatuko du ikasle bakoitzaren ordenagailuan bideoaren erreprodukzioa: pausatu, ikusten jarraitu, bukatu ikustea. Honek aukera emango dio irakasleari bideoan azaltzen diren hainbat pasarte komentatzeko, eta bideoaren audioarekin batera, ikasleek bere komentarioak entzun ahal izango dituzte. Gela fisikoan proiektorea erabiliz egiten duena.</li>
+</ul>
+</li>
+</ul>
+<p>Gauza gehiago ere egin daitezke, baina azalpen honekin zera argitu nahi nuke: Tresna hau ez dela bideokonferentzia tresna soil bat, tresna honek ikasgela baten egunero ikusten ditugun rolak eta funtzioak era birtualean gauzatzeko pentsatuta dagoela.<br /><br />Eta hau aipatu gabe ezin utzi: Sofware libre hau gure kontrolpean dagoen zerbitzari baten instalatuko dugunez, badakigu bideokonferentzia horiek ez direla grabatuta geratuko nazioarteko enpresa handien eskuetan, parte-hartzaileen pribatutasuna babestuta eta bermatuta egongo da.</p>
+<h2>Nola erabili ahal izango dugu ?</h2>
+<p>Tresna hau oso ondo integratzen da Moodle-ekin. Moodle-en <a href="https://moodle.org/plugins/mod_bigbluebuttonbn" target="_blank">plugin bat instalatu behar da</a> eta plugin horren konfigurazioan BigBlueButton zerbitzariarekin lotu, 10 segundoko lana, besterik ez.<br /><br />Moodle gabe ere erabili daiteke, kasu honetan <a href="https://docs.bigbluebutton.org/greenlight/gl-overview.html" target="_blank">GreenLigth</a> erabiliz. Tresna oso baliagarria da bilerak egiteko, aurrez azaldu ditugun funtzio asko erabiltzen baitira bileretan, ikastetxe bateko irakasleen artean izan, edo enpresa bateko kideen artean izan.</p>
+<h2>Instalazioarekin hasi aurretik, dena prestatu</h2>
+<h3>Firewall edo suhesia, eta NAT konfigurazioa</h3>
+<p>Software honen instalazioa oso erraz egiten da (lerro bateko komando bat), baina oso garrantzitsua da instalazioarekin hasi aurretik Firewall-a prest izatea.<br /><br />Beraien <a href="https://docs.bigbluebutton.org/2.2/configure-firewall" target="_blank">dokumentazioan aukera edo eszenatoki ezberdinak</a> planteatzen badituzte ere, nire aholkua hau da: <strong>Saihestu NAT egitea IP publiko eta IP pribatuen artean</strong>. <br /><br />Ni hasiera batean horrela konfiguratzen saiatu nintzen eta arazo batzuk izan nituen. Zerbitzaria NAT gabe eta IP publiko batekin konfiguratu ondoren, dena ondo eta batere arazorik ez.</p>
+<p><img class="img-responsive" class="img-responsive" src="https://docs.bigbluebutton.org/images/11-install-net0.png" alt="https://docs.bigbluebutton.org/images/11-install-net0.png" /></p>
+<p><br />NAT gabe jarri arren, Firewall batekin babestu dezakegu zerbitzaria, izan ere gomendagarria da. <br /><br />Aurretik firewall-a jarri badiogu, Internetetik portu hauetara datorren trafikoa baimendu.</p>
+<ul>
+<li>TCP-80, TCP-443, TCP-7443, TCP-22</li>
+<li>UDP 16384-32768</li>
+<li>ICMP</li>
+</ul>
+<h3>Zerbitzaria</h3>
+<p>BigBlueButton non instalatu ez baduzu, beti duzu zerbitzari bat alokatzeko&nbsp;aukera behar duzun denborarako. Zerbitzari hori zuk kudeatuko zenuke, bertara konektatu eta zure BigBlueButton zerbitzaria instalatzeko aukera izango zenuke. <br /><br />Adibidez, <a href="https://www.digitalocean.com/products/droplets/" target="_blank">DigitalOcean</a>-en hilean 80$ ordainduz edozeinek lor dezake zerbitzari txukun bat. Hau pertsona arrunt batentzako diru asko izan daiteke, baina eskola edo erakunde batentzako ez da ezer. Gainera, ez da betirako. Lau hilabetez erabili zenezake, eta gero bertan behera utzi.<br /><br />Zerbitzariak <a href="https://docs.bigbluebutton.org/2.2/install.html#minimum-server-requirements" target="_blank">ezaugarri hauek</a> bete behar ditu</p>
+<ul>
+<li><strong>Ubuntu 16.04 64</strong>-bit Linux kernel 4.x: Ez da Ubuntu berria, baina itxuraz bertsio honetarako egokitu dute intalazioa. Bertsio hau LTS bertsioa denez, <a href="https://wiki.ubuntu.com/Releases" target="_blank">eguneraketak 2021eko apirilerarte</a> egongo dira</li>
+<li><strong>RAM</strong>: 4 GB da gutxienezkoa, nik <strong>8GB</strong> jarriko nizkioke, eta aukeran 16GB.</li>
+<li><strong>CPU: 8 core</strong>, eta aukeran 16</li>
+</ul>
+<p>Ubuntu zerbitzaria instalatzen dugunean, ez dugu mahaigainik instalatuko, ezta ere web zerbitzaririk (80 eta 443 portuak libre egon behar dira). Bai ordea ssh zerbitzua, zerbitzariaren konfigurazioa egin ahal izateko beharko dugulako.<br /><br />Hasi ba lanean. Ubuntu instalazioa egin, eta gero jarraitu hau irakurtzen.</p>
+<h3>DNS-etan gure zerbitzariaren izena publikatu</h3>
+<p>Garrantzitsua da hau egina egotea BigBlueButtton instalatzen hasi aurretik. Interneten publikatuta egongo den DNS izen bat behar dugu. Demagun gure zerbitzariaren DNS izena <strong>bigbluebutton.example.com</strong> dela, eta bere IP publikoa hau dela: <strong>203.0.113.1</strong><br /><br />Dena ondo dagoela ziurtatzeko, ping bat egingo diogu: <strong><em>ping bigbluebutton.example.com</em></strong> , eta erantzuna&nbsp;<strong>203.0.113.1</strong> helbidetik jaso beharko dugu.</p>
+<h2>Instalazioa</h2>
+<p>Hona heldu bazara, dagoeneko Ubuntu zerbitzaria instalatu duzu, Firewall-a konfiguratu duzu, eta Interneteko DNSetan zure zerbitzariaren izena publikatuta dago. Orain BigBlueButton instalatzen hasiko gara. <br /><br />Hasieran azaldu dugun moduan, BBB bi eratara erabili daiteke: Moodle-eko jarduera baten bidez, edo Moodle gabe <a href="https://docs.bigbluebutton.org/greenlight/gl-install.html#installing-on-a-bigbluebutton-server" target="_blank">GreenLigth interfazea erabiliz</a>&nbsp;</p>
+<p>Aukera hauek ez dira kontrajarriak, aukera biak erabili ditzakezu. Izan ere, ikastetxe batek nahi izango du ikasleekin Moodle jarduera bidez erabiltzea, baina irakasleen arteko bilerak egiteko, gurasoekin biltzeko, ...., Moodle ikastaro baten beharrik gabe&nbsp; ere erabili ahal izatea oso praktikoa izango da.</p>
+<p>GreenLigth-ek docker erabiliko duenez, goazen docker instalatzera eta gerorako prest utziko dugu.</p>
+<h3>Docker instalazioa</h3>
+<p>Gure Ubuntu zerbitzaria orain instalatu dugunez, ez du docker instalatuta izango,&nbsp; beraz docker instalatuko dugu <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank">hemen</a> azaltzen den bezala:</p>
+<p style="padding-left: 60px;"><br /><code>apt-get update</code><br /><br /><code>sudo apt-get install \</code><br /><code>&nbsp;&nbsp;&nbsp; apt-transport-https \</code><br /><code>&nbsp;&nbsp;&nbsp; ca-certificates \</code><br /><code>&nbsp;&nbsp;&nbsp; curl \</code><br /><code>&nbsp;&nbsp;&nbsp; gnupg-agent \</code><br /><code>&nbsp;&nbsp;&nbsp; software-properties-common</code><br /><br /><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code><br /><br /><code>sudo add-apt-repository \</code><br /><code>&nbsp;&nbsp; "deb [arch=amd64] https://download.docker.com/linux/ubuntu \</code><br /><code>&nbsp;&nbsp; $(lsb_release -cs) \</code><br /><code>&nbsp;&nbsp; stable"</code><br /><br /><code>apt-get update</code><br /><br /><code>apt-get install docker-ce docker-ce-cli containerd.io</code></p>
+<p style="padding-left: 30px;"><br />Orain <strong>docker -v</strong> komandoarekin ikusiko dugu zein den instalatu duen bertsioa. Gure kasuan hau da<br /><strong>Docker version 19.03.8, build afacb8b7f0</strong><br /><br />Ondoren <strong>docker-compose</strong> <a href="https://docs.docker.com/compose/install/" target="_blank">instalatuko degu</a></p>
+<p>&nbsp;</p>
+<p><br /><code>sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</code><br /><br /><code>chmod +x /usr/local/bin/docker-compose</code><br /><br /><code>docker-compose --version</code></p>
+<p>&nbsp;</p>
+<h3>Greenlight lehen zatia</h3>
+<p>Greenlight karpeta sortuko dugu. <br /><br /><code>mkdir ~/greenlight &amp;&amp; cd ~/greenlight</code><br /><br />Ondoren, <a href="https://docs.bigbluebutton.org/greenlight/gl-install.html#2-install-greenlight" target="_blank">dokumentazioan dioten moduan</a> komando hau exekutatu<br /><br /><code>docker run --rm bigbluebutton/greenlight:v2 cat ./sample.env &gt; .env</code><br /><br />Honekin<strong> .env</strong> fitxategia sortu da. Fitxategi honetan egongo da GreenLight konfigurazioa, eta jarraian ikusiko dugu nola konfiguratuko dugun.</p>
+<h3>BigBlueButton instalazioa</h3>
+<p>BBBkoek <a href="https://github.com/bigbluebutton/bbb-install" target="_blank">script bat </a>prestatu dute instalazioa egiteko, ondoren erabiliko dugun komandoak hau egingo du:<br /><br /></p>
+<ul>
+<li>Ubuntu 16.4 Xenial distribuziorako <strong>220</strong> bertsioa instalatuko du. Dokumentu hau egiterakoan dagoen azkena.</li>
+<li>Behar dena konfiguratuko du <em><strong>bigbluebutton.example.com</strong></em> domeinuarekin. Kontutan izan hau adibidean erabiltzen ari garen izena dela, zure kasuan beste bat izango da.</li>
+<li>Bide batez LetsEncrypt ziurtagiria instalatuko du <strong><em>bigbluebutton.example.com</em></strong> domeinuarentzat</li>
+<li>LetsEncrypt domeinu honi buruzko mezuak <em><strong>sistemak@example.com</strong></em> helbidera bidaltzeko konfiguratu</li>
+<li>Greenlight docker irudia instalatuko du</li>
+</ul>
+<p>Orain BBB instalatzeko komando hau erabiliko degu. Ordu erdi bat beharko du dena egiteko, beraz hartu kafe bat lasai.<br /><br /><code>wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-220 -s bigbluebutton.example.com -e sistemak@example.com -g</code><br /><br />Bukatzen duenean komando honek esango dizu zein den <strong><em>Secrect pasahitza,</em></strong> datu hau beharko dezu URL parametroarekin batera Moodle-en plugina eta&nbsp; GreenLight konfiguratzeko<br /><br /><code>bbb-conf --secret</code><br /><br />Honekin BigBlueButton martxan eta erabilgarri dago. Esan dizuet, komando bakar batekin instalatzen da.<br /><br /></p>
+<h3>Greenlight bigarren zatia</h3>
+<p>Orain Greenlight konfiguratzen jarraitzen degu <a href="https://docs.bigbluebutton.org/greenlight/gl-install.html#3-configure-greenlight" target="_blank">dokumentazioa</a> jarraituz. Docker irudiari Secret pasahitza zein den galdetuko diogu<br /><br /><code>docker run --rm bigbluebutton/greenlight:v2 bundle exec rake secret</code><br /><br />eta eman digun emaitza <strong>.env</strong> fitxategiko <strong>SECRET_KEY_BASE</strong> aldagian jarriko degu<br /><br /><strong>.env</strong> konfigurazioan ere jarri beharko dugu BigBlueButton-ek ematen digun secret pasahitza<br /><br /><em><strong>bbb-conf --secret</strong></em>&nbsp; komandoak ematen digun <strong>Secret</strong> kopiatu eta<strong> .env</strong> fitxategiko <strong>BIGBLUEBUTTON_SECRET</strong> aldagaian jarriko degu. Oraingoz egin ditugun aldaketekin .env fitxategian dena ondo dagoela ziurtatzeko<br /><br /><code>docker run --rm --env-file .env bigbluebutton/greenlight:v2 bundle exec rake conf:check</code><br /><br />Ondoren nginx-ekin konfigurazioa egingo dugu komando honen bitartez<br /><br /><code>docker run --rm bigbluebutton/greenlight:v2 cat ./greenlight.nginx | sudo tee /etc/bigbluebutton/nginx/greenlight.nginx</code><br /><br />Konfigurazioa bere lekuan jarri denez, nginx berrabiaraziko dugu<br /><br /><code>systemctl restart nginx</code><br /><br /><strong>Docker-compose.yml</strong> fitxategia komando baten bidez sortuko dugu. Horretarako greenlight karpetan sartu <br /><br /><code>cd ~/greenligh</code>t<br /><br />eta komando hau exekutatuko dugu<br /><br /><code>docker run --rm bigbluebutton/greenlight:v2 cat ./docker-compose.yml &gt; docker-compose.yml</code><br /><br />Greenlight-ek erabiltzen duen PostgreSQL pasahitza sortu eta .env fitxategian jartzeko komando hau erabiliko dugu<br /><br /><code>export pass=$(openssl rand -hex 8); sed -i 's/POSTGRES_PASSWORD=password/POSTGRES_PASSWORD='$pass'/g' docker-compose.yml;sed -i 's/DB_PASSWORD=password/DB_PASSWORD='$pass'/g' .env</code><br /><br />Azkenik docker-compose bidez martxan jarri &nbsp;<br /><br /><code>docker-compose up -d</code><br /><br />Honekin Greenlight martxan izango genuke. Bere interfazean sartzeko, <strong><em>https://bigbluebutton.example.com/b</em></strong> helbidean sartu behar gara. Fijatu ondo, bukaeran dagoen<strong> /b</strong> horrekin, ez da akats bat.<br /><br />Administratzaile rola izango duen erabiltzailea sortuko dugu. Horretarako komando hau erabiliko dugu<br /><br /><code>docker exec greenlight-v2 bundle exec rake user:create["<strong>nireadminizena</strong>","<strong>sistemak@example.com</strong>","<strong>NireSuperPasahitza</strong>","<strong>admin</strong>"]</code></p>
+<ul>
+<li>izena: nireadminizena</li>
+<li>posta helbidea: <a href="mailto:sistemak@example.com">sistemak@example.com</a></li>
+<li>pasahitza: NireSuperPasahitza</li>
+<li>rola: admin</li>
+</ul>
+<p>Hau eginda, <em><strong>https://bigbluebutton.example.com/b</strong></em> helbidean <em><strong>SignIn</strong></em> gainean klikatu, eta erabiltzaile honekin sartu ahal izango gara.<br /><br /><strong>.env</strong> fitxategiko konfigurazio <a href="https://docs.bigbluebutton.org/greenlight/gl-config.html" target="_blank">parametro gehiago ere badaude</a>, guk hauetako batzuk azalduko ditugu.<br /><br />Kontutan izan <strong><em>.env</em></strong> fitxategian parametroak aldatu bakoitzean, docker irudia geratu eta berriro ere abiatu egin beharko dugula.<br /><br /><code>docker-compose stop</code><br /><code>docker-compose up -d</code></p>
+<h3>GreenLight konfigurazio parametroak</h3>
+<p>GreenLigth-era sartzeko bi aukera dauzkagu: Berak kudeatzen duen erabiltzaileen datu basea, eta baita ere gure ActiveDirectory edo LDAParen erabiltzaileen datu basea erabiltzea.<br /><br /><em><strong>ActiveDirectory</strong></em>-ko erabiltzaileen atzipena lortzeko, parametro hauek jarri genezake <strong>.env</strong> fitxategian.<br /><br /></p>
+<p style="padding-left: 60px;"><code>LDAP_SERVER=Active-Directory-IP-Helbidea</code><br /><code>LDAP_PORT=389</code><br /><code>LDAP_METHOD=plain</code><br /><code>LDAP_UID=sAMAccountName</code><br /><code>LDAP_BASE=ou=Irakasleak,ou=Users,dc=example,dc=com</code><br /><code>LDAP_BIND_DN=cn=erabiltzaile-izena,cn=Users,dc=example,dc=com</code><br /><code>LDAP_PASSWORD=erabiltzaile-pasahitza</code><br /><code>LDAP_ROLE_FIELD=ou</code><br /><br /></p>
+<p>ActiveDirector edo LDAP -eko<em> <strong>erabiltzaile-izena</strong></em> izeneko erabiltzailea erabiliko dugu AD-ra konektatzeko. Erabiltzaile honen pasahitza ere hor jarri beharko dugu. Beste parametroak, bakoitzak bere AD-ko datuekin konfiguratu beharko ditu.<br /><br />ActiveDirectory-an ez dagoen norbaiti bere guneak sortu eta bideokonferentziak sortzeko baimena eman nahi badiougu, <em><strong>ALLOW_GREENLIGHT_ACCOUNTS</strong></em> parametroaren bidez lortuko dugu<br /><br /><code>ALLOW_GREENLIGHT_ACCOUNTS=true</code><br /><br />Azken aldaketa honekin, edozeinek eskatu dezake kontu bat, baina <em><strong>DEFAULT_REGISTRATION</strong></em> parametroaren bidez, administratzailearen oniritsia beharko du kontua sortu ahal izateko<br /><br /><code>DEFAULT_REGISTRATION=approval</code><br /><br /></p>
+<h2>Erabilera: Moodle</h2>
+<p>Moodle administratzaileak plugina instalatu ondoren, bere konfigurazioan sartu eta parametro hauek bete beharko ditu</p>
+<ul>
+<li>BigBlueButton zerbitzariaren URLa : Gure adibidean, <a href="https://bigbluebutton.example.com/bigbluebutton">https://bigbluebutton.example.com/bigbluebutton</a></li>
+<li>BigBlueButton sekretu partekatua:&nbsp; bbb-conf --secret komandoak bueltatzen diguna</li>
+</ul>
+<p>Beste hainbat parametro daude plugin konfigurazioan, baina honekin nahikoa da Moodle eta BigBlueButton alkarrekin lanean jartzeko.</p>
+<p>Hau egin ondoren, Moodle-eko ikastaro baten sartu, jarduera berri bat gehitu, eta aukeren artean BigBlueButtonBN izenekoa agertuko zaigu. Jarduera gehitu, eta kitto,</p>
+<p>Jarduera horretan irakaslea sartzen denean, moderatzaile rola izango du, eta ikastaroan dauden ikasleak sartzen direnean, parte-hartzaile rola.</p>
+<h2>Erabilera: GreenLigth</h2>
+<p>Kasu honetan ez gara Moodle bidez sartuko, baizik eta bere web gune propiotik. Gure adibidean, hau litzateke bere helbidea <a href="https://bigbluebutton.example.com/b">https://bigbluebutton.example.com/b</a></p>
+<p>LDAP edo Active directory-ko erabiltzaileek ez dute kontu berri bat sortu beharrik izango. Saioan sartzeko esteka gainean (</p>
+<p>https://bigbluebutton.example.com/b/<strong>signin</strong>) klikatuz, LDAP jartzen duen esteka gorrian klikatu, eta beraien LDAP/AD erabiltzaile eta pasahitza sartu beharko dute. Hau egin ondoren, administratzaileak eskaera baimendu arte zai egon beharko dira.</p>
+<p>Administrazaileak dituen funtzioen artean nabarmenduko genituzke</p>
+<ul>
+<li>Erabilzaileen egoera ikusiko du, eta eskaerak baieztatu edo ezeztatuko ditu</li>
+<li>Erabiltzaileen rola aldatu, erabiltzaile arrunta izatetik admin rola izatera</li>
+<li>Grabazioak kudeatu ditzake</li>
+<li>Une oro GreenLigth bidez egiten ari diren konferentziak ikus ditzake</li>
+</ul>
+<p>Erabiltzaile arrunt batek:</p>
+<ul>
+<li>lehen aldiz sartzen denean, bere bilera gela ikusiko du. Edozein momentutan beste bilera gela bat sortu edo ezabatu dezake.</li>
+<li>Bilera gelaren ezarpenak kudeatu ditzake: Pasahitza ezabatu eta berri bat sortu, partaideek izango duten rola definitu, eta abar</li>
+<li>Bilera gela beste norbaitekin erabili behar duenean, gonbidatuei bilera gelaren esteka bidali beharko die. Bilera gela bakoitzak bere pasahitza duenez, gonbidatuei estekarekin batera pasahitza bidali beharko die. Gonbidatuek ez dute gure sisteman erabiltzaile eta pasahitza izan beharrik, bilera antolatzaileak bidalitako esteka eta pasahitza nahiko dira konferentzian sartzeko.</li>
+<li>Bilera gela bat sistemaren beste erabiltzaileekin elkarbanatu daiteke, beraiek ere gela berdinean baimenak izan ditzaten. Oso praktikoa mintegi edo departamenduen kideen artean gela bakar bat elkarbanatzeko.</li>
+<li>Bere geletan egin diren grabazioak ikusi eta kudeatu ditzake.</li>
+</ul>
+<p>LDAP/AD gabe erabiltzeko, erabiltzaile bakoitzak bere kontua sortu beharko luke&nbsp;https://bigbluebutton.example.com/b/<strong>signup</strong>&nbsp; estekan klikatuz. Formularioan eskatzen zaizkion datuak bete ondoren, administratzaileak bere eskaera baimendu arte zai egon beharko lirateke.</p>
+<p>Demagun orokorrean sistema hau gure LDAP/ADan dauden erabiltzaileentzat eskuragarri jarri nahi dugula, baina noizbehinka gurekin kolaboratzen duen norbaiti gure sistema erabiltzeko aukera eman nahi diogula.</p>
+<p>Kasu honetan barne erabiltzaileek LDAP/AD bidez autentikatuko lirateke, eta kanpoko kolaboratzaileek, Greenlight-ek kudeatzen duen erabiltzaileen datu basea erabiliz</p>
+<p>&nbsp;</p>
+<p>Animatu eta saiatu zuen erakundeetan BigBlueButton erabiltzen, eta zalantzaren bat izanez gero, galdetu.</p>

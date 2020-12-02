@@ -1,0 +1,27 @@
+---
+layout: single
+title: 'Linux: Pakete bertsio zehatz bat nola instalatu'
+tags: debian ubuntu paketeak
+---
+
+<p>Ez da kontu arrunta, baina batzuetan arazo hau izan dezakegu: Auskalo zergatik, pakete baten bertsio zehatz bat instalatu nahi dugu, baina gure Debian/Ubuntu sistemak berriago bat jartzen digu.</p>
+<p>Normalean gomendagarriena sitemak berak proposatzen digun bertsioa jartzea izango da, baina posible ere bada aurreko bertsio bat nahi dugula esatea.</p>
+<p>Adibidez, nire ordenagailuan <strong><em>Ubuntu 18.10 (cosmic)</em></strong> dut, eta gaur egun sistemak proposatzen didan openvpn bertsioa <em><strong>2.4.6-1ubuntu2</strong></em> da.</p>
+<p>Nik instalatu nahi dudan openvpn bertsioa <strong><em>Ubuntu 17.10(artful)</em></strong>-k zeukana da,&nbsp; <strong><em>2.4.3-4ubuntu1</em></strong> bertsioa alegia.</p>
+<p>Lau pauso hauekin gure helburua lortuko genuke:</p>
+<p>1.- Errepositorioetan artful bertsioa gehitu</p>
+<p>/etc/apt/sources.list fitxategiaren bukaeran lerro hau gehitzen dugu</p>
+<blockquote>
+<p><em><strong># openvpn zaharra ekartzeko</strong></em><br /><em><strong>deb http://security.ubuntu.com/ubuntu artful main</strong></em></p>
+</blockquote>
+<p>2.- Ondoren pakete zerrenda eguneratu</p>
+<blockquote>
+<p><strong><em>sudo apt-get update</em></strong></p>
+</blockquote>
+<p>3.- Orain pakete bertsio zehatza instalatzeko eskatu</p>
+<blockquote><strong><em>sudo apt-get install openvpn=2.4.3-4ubuntu1</em></strong></blockquote>
+<p>4.- Eta azkenik, sistemari esan aurrerantzean openvpn paketearen bertsio berriagoak egon arren, ez eguneratzeko</p>
+<blockquote>
+<p><strong><em>sudo apt-mark hold openvpn</em></strong></p>
+</blockquote>
+<p>&nbsp;</p>

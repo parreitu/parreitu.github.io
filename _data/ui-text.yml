@@ -114,6 +114,58 @@ es-ES:
 es-CO:
   <<: *DEFAULT_ES
 
+# Euskara
+# ------
+eu-ES:
+  skip_links                 : "Saltar enlaces"
+  skip_primary_nav           : "Saltar a navegación principal"
+  skip_content               : "Saltar a contenido"
+  skip_footer                : "Saltar a pie"
+  page                       : "Orrialdea"
+  pagination_previous        : "Atzera"
+  pagination_next            : "Aurrera"
+  breadcrumb_home_label      : "Hasiera"
+  breadcrumb_separator       : "/"
+  menu_label                 : "Alternar menú"
+  search_label               : "Alternar búsqueda"
+  toc_label                  : "Orrialde honetan"
+  ext_link_label             : "Esteka zuzena"
+  less_than                  : "baino gutxiago"
+  minute_read                : "irakurketa minutu"
+  share_on_label             : "Hemen elkarbanatu"
+  meta_label                 :
+  tags_label                 : "Etiketak:"
+  categories_label           : "Kategoriak:"
+  date_label                 : "Noiz eguneratuta:"
+  comments_label             : "Idatzi iruzkina"
+  comments_title             : "Iruzkinak"
+  more_label                 : "Ikusi gehiago"
+  related_label              : "Agian hauek zure interesekoak izan daitezke"
+  follow_label               : "Hemen aurkituko nauzu:"
+  feed_label                 : "Feed"
+  powered_by                 : "Honekin eginda:"
+  website_label              : "Web gunea"
+  email_label                : "Posta elektronikoa"
+  recent_posts               : "Sarrera berriak"
+  undefined_wpm              : "El parámetro words_per_minute (palabras por minuto) no está definido en _config.yml"
+  comment_form_info          : "Tu dirección de correo electrónico no se publicará. Los campos obligatorios están marcados"
+  comment_form_comment_label : "Iruzkinak"
+  comment_form_md_info       : "Markdown erabili dezakezu"
+  comment_form_name_label    : "Izena"
+  comment_form_email_label   : "Posta elektroniko helbidea"
+  comment_form_website_label : "Sitio web (opcional)"
+  comment_btn_submit         : "Bidali iruzkina"
+  comment_btn_submitted      : "Bidalita"
+  comment_success_msg        : "¡Gracias por tu comentario! Se publicará una vez sea aprobado."
+  comment_error_msg          : "Ha ocurrido un error al enviar el comentario. Asegúrate de completar todos los campos obligatorios e inténtalo de nuevo."
+  loading_label              : "Kargatzen..."
+  search_label_text          : "Bilaketa hitzak..."
+  search_placeholder_text    : "Bilaketa hitzak..."
+  search_algolia_no_results  :
+  results_found              : "resultado(s) encontrado(s)"
+  back_to_top                : "Bueltatu gora"
+
+
 # French
 # ------
 fr: &DEFAULT_FR

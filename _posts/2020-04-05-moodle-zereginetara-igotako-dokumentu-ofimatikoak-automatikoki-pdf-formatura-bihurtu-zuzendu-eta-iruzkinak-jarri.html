@@ -1,0 +1,30 @@
+---
+layout: single
+title: 'Moodle: Zereginetara igotako dokumentu ofimatikoak automatikoki PDF formatura  bihurtu,
+  zuzendu eta iruzkinak jarri'
+tags: moodle pdf trikimailuak unoconvd
+---
+
+<p>Moodle-en irakasleak zeregina izeneko jarduera bat publikatzen duenean, gero ikasleek beraien lanak bertara igo ditzakete, <a href="https://youtu.be/z-Ql57FXsYM?t=464" target="_blank">eta irakasleak hortik zuzendu ditzake</a>.</p>
+<p>Ofimatika dokumentuak (LibreOffice, Microsoft Office) automatikoki PDF bihurtzen ditu, eta irakasleak PDF horren gainean "marrazten du". Irakaslek jarritako iruzkinekin beste PDF bat sortzen da, eta hau da ikasleak feedback moduan jasotzen duena.</p>
+<p>Hau egin ahal izateko, zebitzarian unoconv paketea instalatuta egon behar da</p>
+<p style="padding-left: 60px;"><code>apt-get install unoconv</code></p>
+<p>Ondoren "unoconv listener" martxan jarri behar dugu, <a href="https://docs.moodle.org/38/en/Universal_Office_Converter_(unoconv)#Run_a_unoconv_listener" target="_blank">hemen azaltzen den bezala</a>. Debian baten kasuan</p>
+<ol>
+<li><a href="https://docs.moodle.org/38/en/mod/assign/feedback/editpdf/testunoconv/initd">Orrialde honen bukaeran</a> dagoen scripta kopiatu,&nbsp; <strong><em>/etc/init.d/unoconvd</em></strong> fitxategia sortu eta bertan itsasi</li>
+<li>/etc/init.d/unoconvd fitxategiari exekuzio baimenak eman: <em><strong>chmod ugo+x /etc/init.d/unoconvd</strong></em></li>
+<li>Zerbitzu moduan exekutatu dadin konfiguratu: <em><strong>sudo update-rc.d unoconvd defaults</strong></em></li>
+<li><em>cron</em>&nbsp;barruan lerro hau gehitu. 5 minuturo begiratuko du ea zerbitzua bizirik dagoen, eta ez balego martxan jarriko luke:&nbsp;</li>
+</ol>
+<p style="padding-left: 30px;"><strong><em>*/5 * * * * /usr/bin/service unoconvd status &gt; /dev/null || (/usr/bin/service unoconvd start &amp;&amp; echo "Restarted crashed unoconv listener") </em></strong></p>
+<p>Baina hau ez da nahikoa. Apache zerbitzua www-data erabiltzaileak kudeatzen du, eta honek baimenak behar izaten ditu unoconv prozesua behar den bezala erabiltzeko, bestela ez da gai dokumentuak PDF bihurtzeko. Nik honela konpondu izan dut</p>
+<h2>unoconv scripta aldatu eta HOME aldagaiaren balioa "/tmp" jarri</h2>
+<p>Trikimailu hau <a href="https://github.com/unoconv/unoconv/issues/87#issuecomment-231915518" target="_blank">hemendik hartu det</a>. <strong><em>/usr/bin/unoconv</em> </strong>fitxategiko 1216 lerroan hau gehitu</p>
+<p style="padding-left: 60px;"><code>os.environ['HOME'] = '/tmp'</code></p>
+<p>Honekin www-data erabiltzaileak ez du arazorik izango behar dituen fitxategiak /tmp barruan sortzeko.</p>
+<p>Azkenik, www-data erabiltzaileari sudo baimenak emango dizkiogu, baina soilik /usr/bin/unoconv scripta exekutatu ahal izateko, beste ezer ezin izango du egin sudo moduan.</p>
+<p>Editatu /etc/sudoers fitxategia eta "root ALL=(ALL:ALL) ALL" lerroaren azpian, hau gehitu</p>
+<p style="padding-left: 60px;"><code>www-data ALL=NOPASSWD: /usr/bin/unoconv</code></p>
+<p>Eta listo, honekin Moodle-ek ez du izango arazorik ikasleek zereginetara igotzen dituzten ofimatika dokumentuak automatikoki PDF formatura bihurtzeko, eta ondorioz irakasleek ikasleen lanen gainean beraien oharrak eta iruzkinak <em><strong>margotu</strong></em> ahal izango dituzte.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

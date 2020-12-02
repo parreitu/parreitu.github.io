@@ -1,0 +1,50 @@
+---
+layout: single
+title: NextCloud etxeko RaspberryPI-an
+tags: nextcloud raspberrypi
+---
+
+<p>Dokumentu honetan nire etxean eta RaspberryPI bat erabiliz, Nextcloud instantzia propioa sortzeko erabili ditudan pausoak gainetik azaltzera noa (ez da gida zehatz bat). Norbait animatzen da, jakin dezala honek niri behintzat funtzionatu didala.<br /> <br />Erabiltzen ari naizen RaspberryPI-ak urte batzuk ditu, RaspberryPI2B modeloa da: <a href="https://www.raspberrypi.org/products/raspberry-pi-2-model-b">https://www.raspberrypi.org/products/raspberry-pi-2-model-b</a></p>
+<p>Dropbox ezagutzen duenarentzat, Nextcloud-en erabilera oso antzerakoa dela konturatuko da. Sortuko dugun nextcloud instantzia honetan guk nahi ditugun erabiltzaileak sortu ahal izango ditugu, eta erabiltzaile bakoitzak bere txokoa izango du, non:</p>
+<ul>
+<li>karpetak sortu ahal izango ditu bere hodei propioan.</li>
+<li>Ezabatzen diren dokumentuak zakarontzira joango direnez, erabiltzaile bakoitzak aukera izango du bere kabuz dokumentuak zakarontzitik berreskuratzeko.</li>
+<li>Bertsioak: Dokumentu bat editatzen/eraldatzen denean nextcloud berak aurreko bertsioak automagikoki gordeko ditu, beraz erabiltzaile bakoitzak posible izango du bere kabuz aurreko bertsio bat berreskuratzea.</li>
+<li>Sistema eragile/gailu ezberdinak: Gure hodeiko karpetara konektatu ahal izateko bide ezberdinak ditugu:
+<ul>
+<li>Web nabigatzaile baten bidez</li>
+<li>Linux/Windows/MacOS sistemetan instalatu ahal izango ditugun bezeroen bidez</li>
+</ul>
+</li>
+<li>Partekatze sistema: Erabiltzaile bakoitzak aukera izango du karpetak/fitxategiak beste batzuekin elkarbanatzeko. Gainera kasu bakoitzean norberak erabakiko du zeintzuk diren elkarbanatzerakoan ematen dituen baimenak: ikusi bakarrik, editatu, eta abar.</li>
+<li>Pluginak: Elkarlanerako hainbat plugin instalatu daitezke, oinarrizko funtzionalitateaz gain beste hainbat gauza egin ahal izateko.</li>
+</ul>
+<p>GoogleDrive-ek beste aukera interesgarri bat ematen digu: Dokumentu ofimatikoak online editatzekoa. Testu dokumentua, kalkulu orria edo aurkezpen bat online sortu eta editatzeko aukera ematen digu. Nextcloud-ek berez eta beste ezer instalatu gabe TXT fitxategiak online sortu eta editatzeko aukera ematen badigu ere, posible dugu Drive-ekin egiten ditugun gauzak egitea Nextcloud beste software batekin integratzen badugu. CollaboraOnline izango litzateke aukeretako bat: <a href="https://nextcloud.com/collaboraonline">https://nextcloud.com/collaboraonline</a></p>
+<p>CollaboraOnline docker irudi baten bidez erabiltzen da, eta hemen dago arazoa. RaspberryPi-ak ARM teknologia erabiltzen du baina CollaboraOnline x86-erako prestatuta dago, eta ARMetan ez du funtzionatzen. Beraz oraingoz (2018/12/10) badirudi ezinezkoa dela.</p>
+<p>Pack osoa (Nextcloud+CollaboraOnline) jarri nahi baduzu, RaspberryPi-aren ordez beste gailuren bat erabili behako zenuke, x86 arkitektura duen bat alegia.</p>
+<p>Raspberry-a etxeko Router-aren ethernet portu batean konektatu dut, eta IP finko bat jarri diot. Routerraren ezarpenetan sartu eta IP publikotik SSH/HTTP/HTTPS eskaerak Raspberry-aren IP pribatura desbideratu ditut. Honekin ziurtatzen det zerbitzua Internet saretik ere erabilgarri egongo dela.</p>
+<p><strong>LINUX SISTEMA</strong><br /><strong>==========</strong><br /> <br />Raspberry-an raspbian instalatu ondoren:</p>
+<ul>
+<li>Eguneratu: apt-get update &amp;&amp; apt-get upgrade</li>
+<li>Erabiltzaile bat sortu eta bertan konfiguratu erabiltzaile horretan kanpotik konektatu ahal izateko erabiliko dugun SSH gako publikoa. Hau egin ondoren, guztiz debekatuko ditugu erabiltzaile+pasahitza erabiliz SSH konexio saikera guztiak.</li>
+<li><strong>Fail2ban</strong> instalatu: Honek segurtasun gehigarri bat eskeiniko digu, batez ere Brute-Force moduko erasoen aurrean.</li>
+<li><strong>unattended upgrades</strong> instalatu eta konfiguratu: Linux sisteman instalatuta ditugun paketeak automatikoki eguneratuak izatea nahi dugu. Berrabiarazi beharra dagoenean ere automatikoki berrabiaraziko da, nire kasuan goizeko 06:00etan. Honekin gure sistema guztiz eguneratuta izango dugu, eta honek segurtasuna bermatzen asko lagunduko digu.</li>
+</ul>
+<p><br /><strong>NEXTCLOUD</strong><br /><strong>========</strong></p>
+<p>Nextcloud instalatzeko hemen azaltzen diren pausoak jarraitu ditut: <a href="https://geekland.eu/instalar-nextcloud-mariadb-lighttpd">https://geekland.eu/instalar-nextcloud-mariadb-lighttpd</a></p>
+<p>Gure datuak izango dituen diskorako, hasiera baten USB bidez konektatu eta Raspberry-ak elikatzen zuen 500GBeko SATA disko bat erabiltzen saiatu nintzen. SATA diskoa mekanikoa da, eta badirudi raspberry-ak ez zuela nahiko indar hori ondo elikatzeko, eta ez zen pizten. 240GBeko SSD batekin (50&euro; inguru ordaindu det) probatu eta honekin arazorik ez. Leku gehiago behar dudanean, disko handiago bat erosi eta listo, baina oraingoz guretzako hau nahikoa da.</p>
+<p>Nextcloud instantzia DNS izen publiko batekin lotzea gomendagarria da. Nire kasuan ddns.net domeinuko azpi domeinu bat erabiltzea erabaki det, eta horretarako gida hau jarraitu det: <a href="https://www.realdroid.es/2016/10/29/configurar-no-ip-para-raspberry-pi-y-de-paso-que-es-no-ip">https://www.realdroid.es/2016/10/29/configurar-no-ip-para-raspberry-pi-y-de-paso-que-es-no-ip</a></p>
+<p>Gaur egun HTTPS erabiltzea oso erreza da, LETSENCRYPT-eko ziurtagiriak guztion eskura daude. Milaka tutorial daude certbot nola konfiguratzen den azaltzen dutenak, adibidez hau: <a href="https://cycleweb.es/instalar-certificado-ssl-gratis-lets-encrypt-raspberry-pi">https://cycleweb.es/instalar-certificado-ssl-gratis-lets-encrypt-raspberry-pi</a></p>
+<p><strong>BACKUPak</strong><br /><strong>=======</strong></p>
+<p>Behin dena martxan dugula, ezinbestekoa da sistema osoaren backup estrategia bat definitu eta martxan jartzea. Nik honela planteatzen det:</p>
+<p>1.- Gauero 03:00 inguruan (lotan gaudela):<br /> - manteince modua gaitu: erabiltzaileak ezin izango dira logeatu<br /> - DBaren backup bat egin eta backuperako erabiliko dugun karpetan gorde<br /> - Rsync erabiliz /data karpetaren kopia bat backuperako erabiliko dugun karpetan rsync bidez sinkronizatu<br /> - Rsync erabiliz HTML karpetaren kopia bat backuperako erabiliko dugun karpetan rsync bidez sinkronizatu<br /> - manteince modua desgaitu: nextcloud erabilgarri dago berriro<br /> <br /> 2.- Beste ekipo batetik ssh bidez konekatu eta kopia hori beste disko batean gorde. Kopia desberdinak izan nahi ditudanez, nire ideia hau da: Bigarren ekipo honetan Docker erabiliz Elkarbackup instalatu ( <a href="https://hub.docker.com/r/elkarbackup/elkarbackup">https://hub.docker.com/r/elkarbackup/elkarbackup</a> ) eta backup-en datuak izango dituen Volume-a SATA disko batean muntatu.<br /> <br /><strong>SCRIPTak</strong><br /><strong>======</strong><br />Hau da crontab bidez programatuta dudan backupak egiteko scritpa</p>
+<p>------------------------------------------------------------------<br /># cat scripts/hodeia_backup.sh <br />#!/bin/bash</p>
+<p>cd /var/www/html/nextcloud<br />sudo -u www-data php occ maintenance:mode --on # maintance modua gaitu</p>
+<p>rsync -ax --exclude 'nextcloud.log' /media/nextcloud/data/ /media/nextcloud/HODEIA-backup/nextcloud-data/ # DATA karpetaren kopia</p>
+<p>rsync -ax /var/www/html/nextcloud/ /media/nextcloud/HODEIA-backup/nextcloud-www/ # nextcloud kodearen kopia</p>
+<p>mysqldump --single-transaction -uroot -pNIRESUPERPASAHITZA nextcloud &gt; /media/nextcloud/HODEIA-backup/nextcloud-sql.bak # DB kopia</p>
+<p>rm /media/nextcloud/HODEIA-backup/nextcloud-sql.bak.bz2 # aurreko bzip2 fitxategia ezabatu, aurreko kopiakoa</p>
+<p>bzip2 /media/nextcloud/HODEIA-backup/nextcloud-sql.bak # gutxiago okupatu dezan, DB kopia konprimitu</p>
+<p>sudo -u www-data php occ maintenance:mode --off # azkenik, maintance modua desagaitu<br />------------------------------------------------------------------</p>
+<p>&nbsp;</p>
+<p><em>Oharra: Hau bere garaian github-en publikatu nuen gists batean: <a href="https://gist.github.com/parreitu/329de3aef19d45a576b8646c2a682348">https://gist.github.com/parreitu/329de3aef19d45a576b8646c2a682348</a> </em></p>
