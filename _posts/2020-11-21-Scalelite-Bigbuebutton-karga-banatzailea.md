@@ -109,7 +109,7 @@ BBB instalazio berri batean, "*bigbluebutton*" erabiltzaileak UID 997 izan behar
 
 Honekin SCALELITE zerbitzarian NFS karpeta sortu eta baimen egokiak jarri ditugu. Ondoren BBB zerbitzarietan karpeta hau muntatuko dugu
 
-# BBB1, BBB2 eta BBB3 zerbitzarietan NFS karpeta muntatu
+# BBB1, BBB2 eta BBB3 zerbitzarietan NFS karpeta muntatu eta BBB instalazioa egin
 
 Ondorengo komandoak hiru zerbitzarietan egin behar dira. Hau da zerbitzari bakoitzean egingo duguna:
 - nfs-common paketea instalatu
