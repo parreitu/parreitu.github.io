@@ -206,7 +206,7 @@ BBB3 zerbitzarian:
 
 ***
 
-# BBB Zerbitzarietatik, SCALELITE zerbitzarira grabazioak kopiatu
+# BBB Zerbitzariak konfiguratu grabazioak automatikoki SCALELITE zerbitzarira kopiatu daitezen
 
 Berez, BBB bakoitzean egingo diren grabazioak, zerbitzari bakoitzean geratzen dira, baina guk SCALELITE zerbitzarian izan nahi ditugu. Honetarako, [dokumentazioan azaltzen diren pausoak](https://github.com/blindsidenetworks/scalelite/blob/master/bigbluebutton/README.md)  jarraituko ditugu. BBB zerbitzari bakoitzean hau egin
 
