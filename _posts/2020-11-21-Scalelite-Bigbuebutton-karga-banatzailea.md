@@ -670,9 +670,10 @@ Beste BBB zerbitzarietan honekin lortzen deguna zera da, grabazio berriak sortze
 
 Hau egin ahal izateko ***scalelite_batch_import.sh*** scripta exekutatuko dugu, baina lehenengo, deskargatu egin behar dugu
 
-	cd /root
+	cd /usr/local/bigbluebutton/core/scripts
 	wget -c https://raw.githubusercontent.com/blindsidenetworks/scalelite/master/bigbluebutton/scalelite_batch_import.sh
 	chmod +x scalelite_batch_import.sh
+  chmod +x ./post_publish/scalelite_post_publish.rb
 
 Orain inportazioa exekutatu
 	./scalelite_batch_import.sh
