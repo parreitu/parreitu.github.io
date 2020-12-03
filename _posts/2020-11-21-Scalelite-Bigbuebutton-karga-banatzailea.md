@@ -122,7 +122,7 @@ Instalazioa egiterakoan, COTURN zerbitzaria zein den esango diogu, eta bere secr
 
 Ordu erdi inguru beharko da zerbitzari bakoitzean instalazioa burutzeko, aprobetxatu tarte hau kafe bat hartzeko :-)
 
-## BBB1 zerbitzarian: 
+BBB1 zerbitzarian: 
 
 	apt install nfs-common
 	mkdir /mnt/scalelite-recordings
@@ -140,7 +140,7 @@ NFS baimenentzako 2000 GID taldea sortu eta bigbluebutton erabiltzaile lokala ho
 	usermod -a -G scalelite-spool bigbluebutton
 	
 
-## BBB2 zerbitzarian: 
+BBB2 zerbitzarian: 
 
 
 	apt install nfs-common
@@ -158,7 +158,7 @@ NFS baimenentzako 2000 GID taldea sortu eta bigbluebutton erabiltzaile lokala ho
 	usermod -a -G scalelite-spool bigbluebutton
 	
 
-## BBB3 zerbitzarian: 
+BBB3 zerbitzarian: 
 
 	apt install nfs-common
 	mkdir /mnt/scalelite-recordings
@@ -180,7 +180,7 @@ NFS baimenentzako 2000 GID taldea sortu eta bigbluebutton erabiltzaile lokala ho
 Instalazioa bukatu ondoren, komenigarria da BBB zerbitzari bakoitzaren secret-a atera eta nonbaiten apuntatzea, geroago beharko dugu. Honetarako **bbb-conf --secret** komandoa erabiliko dugu
 
 
-## BBB1 zerbitzarian: 
+BBB1 zerbitzarian: 
 
 	bbb-conf --secret
 	
@@ -188,7 +188,7 @@ Instalazioa bukatu ondoren, komenigarria da BBB zerbitzari bakoitzaren secret-a 
 	    Secret: BBB1-SEKRETUA
 	    
 	    
-## BBB2 zerbitzarian: 
+BBB2 zerbitzarian: 
 
 	bbb-conf --secret
 	
@@ -196,7 +196,7 @@ Instalazioa bukatu ondoren, komenigarria da BBB zerbitzari bakoitzaren secret-a 
 	    Secret: BBB2-SEKRETUA
 	    
 	    
-## BBB3 zerbitzarian: 
+BBB3 zerbitzarian: 
 
 	bbb-conf --secret
 	
