@@ -945,3 +945,8 @@ Kontutan izan hau aldatuz gero, denentzako aldatzen dela, eta zure erabiltzailee
 
 [Hemen ikus dezakegu](https://docs.bigbluebutton.org/2.2/customize.html)  konfigurazio beste hainbat aukera nola egokitu daitezkeen
 
+# Artikulu honi buruzko zalantzak, galderak eta iruzkinak
+
+[Hemen idatzi zure iruzkina](https://lemmy.eus/post/23)
+
+
