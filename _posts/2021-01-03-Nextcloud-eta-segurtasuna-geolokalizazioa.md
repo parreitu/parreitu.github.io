@@ -199,3 +199,7 @@ eta crontab-ean gehituko dugu: `crontab -e`
 
 
 Eta listo, honekin bukatu da. Konfigurazio honi esker, zure zerbitzariaren segurtasuna apurtu eta bere kontrola hartzeko hainbat saiakera (ez denak) ekidin dituzu.
+
+# Artikulu honi buruzko zalantzak, galderak eta iruzkinak
+
+[Hemen idatzi zure iruzkina](https://lemmy.eus/post/122)
