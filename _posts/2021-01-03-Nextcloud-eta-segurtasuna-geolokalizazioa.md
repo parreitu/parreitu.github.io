@@ -229,51 +229,38 @@ Orain `nextcloud-le-ssl.conf.geoip-gaitugabe` izenekoa editatu eta bloke hau eza
   Allow from 192.168.1.0/24
 ```
 
-Ondoren, letsencrypt ziurtagiria berritzeko programazioa aldatuko dugu `/etc/cron.d/certbot` fitxategia editatuz. 
-
-Lerroaren kopia bat egingo dugu, eta jatorrizkoa komentatuta utziko dugu. Berritze ordua gaueko 12:00etan egiteko aldatzen dugu.
-
-```
-#0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew
-0 0 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew
-```
-
 Orain /root/scripts karpetan bi script berri hauek sortuko ditugu:
 
 nano geolokalizazioa-desgaitu.sh
 ```
 #!/bin/bash
 
-cp /etc/apache2/sites-available/nextcloud-le-ssl.conf.geoip-gaitugabe nextcloud-le-ssl.conf
-/etc/init.d/apache2 restart
+cd /etc/apache2/sites-available/
+cp nextcloud-le-ssl.conf.geoip-gaitugabe nextcloud-le-ssl.conf
+/etc/init.d/apache2 reload
 ```
 nano geolokalizazioa-gaitu.sh
 
 ```
 #!/bin/bash
 
-cp /etc/apache2/sites-available/nextcloud-le-ssl.conf.geoip-gaituta nextcloud-le-ssl.conf
-/etc/init.d/apache2 restart
+cd /etc/apache2/sites-available/
+cp nextcloud-le-ssl.conf.geoip-gaituta nextcloud-le-ssl.conf
+/etc/init.d/apache2 reload
 ```
 Biei exekuzio baimena eman
 ```
 chmod +x geolokalizazioa-gaitu.sh geolokalizazioa-desgaitu.sh
 ```
 
-Eta azkenik cron-ean programatu `crontab -e` komandoa erabiliz. Geolokalizazioa desgaitzekoa, letsencrypt ziurtagiriak berritu aurretik (23:55), eta berriro ere gaitzekoa letsencrypt ziurtagiria berritu ondoren (0:20). 
+Ondoren, letsencrypt ziurtagiria berritzeko programazioa aldatuko dugu `/etc/cron.d/certbot` fitxategia editatuz. --pre-hook eta --post-hook parametroak erabiliz, esango diogu ziurtagiria berritu beharra dagoenean, hasi aurretik geolokalizazioa desgaitzeko, eta bukatu ondoren berriro gaitzeko.
+
+Lerroaren kopia bat egingo dugu, eta jatorrizkoa komentatuta utziko dugu. 
 
 ```
-55 23 * * * /root/scripts/geolokalizazioa-desgaitu.sh
-20 0 * * * /root/scripts/geolokalizazioa-gaitu.sh
+#0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew
+0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew --pre-hook /root/scripts/geolokalizazioa-desgaitu.sh --post-hook /root/scripts/geolokalizazioa-gaitu.sh
 ```
-
-
-
-
-
-
-
-
 
 
 # Artikulu honi buruzko zalantzak, galderak eta iruzkinak
